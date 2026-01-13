@@ -25,7 +25,9 @@ O projeto oferece duas ferramentas principais organizadas em abas:
 ---
 
 ### 🚀 Como acessar
-A aplicação está disponível online através do Streamlit Cloud: 👉
+A aplicação está disponível online através do Streamlit Cloud: 
+
+👉 https://calculadora-notas.streamlit.app/ 
 
 
 #### Como rodar localmente:
