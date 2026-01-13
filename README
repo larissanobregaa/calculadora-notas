@@ -1,0 +1,25 @@
+# 🎓 Calculadora de Notas
+Um web app simples e rápido para ajudar estudantes do Ibmec a calcularem suas médias e saberem exatamente quanto precisam tirar para passar.
+
+### ✨ Funcionalidades
+- **Simulador de Meta:** Descubra a nota mínima necessária na AP2 para ser aprovado direto (Média 7.0).
+
+- **Cálculo de Média:** Calcule sua média final atual com AP1, AP2 e AC.
+
+- **Interface Responsiva:** Feito para ser usado no celular ou no computador, direto no navegador.
+
+### 🚀 Como usar
+Acesse o app pelo link abaixo:
+
+
+
+Ou rode o código na sua máquina:
+1. Instale o Streamlit: `pip install streamlit`
+
+2. Execute o app: `streamlit run app.py`
+
+
+### 🛠️ Tecnologias
+- Python
+
+- Streamlit
