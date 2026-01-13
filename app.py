@@ -1,9 +1,9 @@
 import streamlit as st
 
-# 1. Configuração da página
+# Configuração da página
 st.set_page_config(page_title="Calculadora de Notas", page_icon="🎓", layout="centered")
 
-# 2. CSS Ajustado
+# CSS
 st.markdown("""
     <style>
     /* Estilo das abas */
@@ -40,7 +40,6 @@ tab1, tab2 = st.tabs(["Quanto preciso tirar?", "Calcular Nota Final"])
 # Aba 1: Quanto preciso tirar?
 with tab1:
     st.markdown("### Simulador de Notas")
-    # Texto explicativo sobre a média 7.0
     st.caption("ℹ️ Cálculo baseado na média mínima **7.0** para aprovação direta (sem necessidade de AS).")
     
     ap1_n = st.number_input("Digite sua nota da AP1", 0.0, 10.0, step=0.1, key="nota_ap1")

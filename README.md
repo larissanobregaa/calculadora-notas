@@ -4,6 +4,10 @@ Um Web App desenvolvido em Python com o framework Streamlit, projetado para auxi
 
 ---
 
+| Interface do App | Acesse pelo Celular |
+| :---: | :---: |
+| <img src="preview.jpeg" alt="Interface do App" width="280"> | <img src="qrcode.png" alt="Acesse pelo Celular" width="280"> |
+
 ### ✨ Funcionalidades
 
 O projeto oferece duas ferramentas principais organizadas em abas:
