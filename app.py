@@ -1,75 +1,85 @@
 import streamlit as st
 
-# Configuração da página e ícone
+# 1. Configuração da página
 st.set_page_config(page_title="Calculadora de Notas", page_icon="🎓", layout="centered")
 
-# Customização de Layout (CSS Minimalista)
+# 2. CSS Ajustado
 st.markdown("""
     <style>
-    .stApp { background-color: #fcfcfc; }
-    .stTabs [data-baseweb="tab-list"] { gap: 8px; }
-    .stTabs [data-baseweb="tab"] { 
-        height: 45px; 
-        border-radius: 8px; 
-        background-color: #f0f2f6; 
-        font-weight: bold;
+    /* Estilo das abas (Tabs) */
+    .stTabs [data-baseweb="tab"] {
+        height: 60px;
+        padding: 0px 30px;
+        font-size: 18px;
+        border-radius: 8px;
     }
-    .stTabs [aria-selected="true"] { background-color: #007bff; color: white; }
-    div[data-testid="stMetricValue"] { font-size: 45px; color: #007bff; }
+    
+    [data-testid="stCaptionContainer"] {
+        color: #262730 !important;
+        font-weight: 500;
+        opacity: 1; /* Remove qualquer transparência que deixe o texto claro */
+    }
+
+    /* Estilo do Rodapé: removido o 'fixed' para evitar que ele suba no mobile */
+    .footer {
+        text-align: center;
+        color: #888;
+        font-size: 14px;
+        padding-top: 50px;
+        padding-bottom: 20px;
+        width: 100%;
+    }
     </style>
     """, unsafe_allow_html=True)
 
-st.title("🎓 Calculadora de Notas")
-st.caption("Layout Simples & Funcional")
+st.title("Calculadora Acadêmica")
 
-
+# Criando as abas
 tab1, tab2 = st.tabs(["Quanto preciso tirar?", "Calcular Nota Final"])
 
-# OPÇÃO 1: Quanto preciso tirar?
+# Aba 1: Quanto preciso tirar?
 with tab1:
-    st.markdown("### 🎯 Simulador de Meta")
-    st.write("Ajuste as notas que você já possui:")
+    st.markdown("### Simulador de Notas")
+    # Texto explicativo sobre a média 7.0
+    st.caption("ℹ️ Cálculo baseado na média mínima **7.0** para aprovação direta (sem necessidade de AS).")
     
-    ap1_m = st.slider("Nota da AP1", 0.0, 10.0, 5.0, step=0.1, key="m1")
-    ac_m = st.slider("Nota da AC", 0.0, 10.0, 5.0, step=0.1, key="m2")
+    ap1_m = st.number_input("Digite sua nota da AP1", 0.0, 10.0, step=0.1, key="meta_ap1")
+    ac_m = st.number_input("Digite sua nota da AC", 0.0, 10.0, step=0.1, key="meta_ac")
     
-    # Cálculo inverso
-    nota_necessaria = (7.0 - (0.4 * ap1_m) - (0.2 * ac_m)) / 0.4
-    
-    st.divider()
-    
-    if nota_necessaria <= 0:
-        st.success("**Você já está aprovado!** 🎉")
-        st.balloons()
-    elif nota_necessaria > 10:
-        st.error(f"**Atenção:** Você precisaria de {nota_necessaria:.1f} na AP2. Foco na AS!")
+    # Lógica para mostrar apenas se houver algum valor inserido
+    if ap1_m > 0 or ac_m > 0:
+        # Fórmula inversa para atingir a meta de 7.0
+        nota_necessaria = (7.0 - (0.4 * ap1_m) - (0.2 * ac_m)) / 0.4
+        
+        st.divider()
+        if nota_necessaria <= 0:
+            st.success("🎉 Com essas notas, você já atingiu a média 7.0!")
+        elif nota_necessaria > 10:
+            st.error(f"Nota necessária na AP2: {nota_necessaria:.1f}. Mesmo com 10 na AP2, você precisará de AS.")
+        else:
+            st.metric("Sua nota na AP2 para passar direto é:", f"{nota_necessaria:.1f}")
     else:
-        st.metric("Sua nota para a AP2 é:", f"{nota_necessaria:.1f}")
-        st.info("A média para passar sem AS é 7.0")
+        st.info("Insira suas notas para calcular a nota necessária para aprovação direta.")
 
-# OPÇÃO 2: Calcular Nota Final
+# Aba 2: Calcular Nota Final
 with tab2:
-    st.markdown("### 📝 Minha Média Final")
-    st.write("Insira as notas das três avaliações:")
-    
-    # Aqui usamos campos numéricos para precisão total
+    st.markdown("### Minha Média Final")
     col1, col2 = st.columns(2)
     with col1:
-        f_ap1 = st.number_input("Nota AP1", 0.0, 10.0, step=0.1, key="f1")
-        f_ac = st.number_input("Nota AC", 0.0, 10.0, step=0.1, key="f2")
+        f_ap1 = st.number_input("Nota AP1", 0.0, 10.0, step=0.1, key="f_ap1")
+        f_ac = st.number_input("Nota AC", 0.0, 10.0, step=0.1, key="f_ac")
     with col2:
-        f_ap2 = st.number_input("Nota AP2", 0.0, 10.0, step=0.1, key="f3")
+        f_ap2 = st.number_input("Nota AP2", 0.0, 10.0, step=0.1, key="f_ap2")
     
-    media_final = (0.4 * f_ap1) + (0.4 * f_ap2) + (0.2 * f_ac)
-    
-    st.divider()
-    
-    if media_final >= 7.0:
+    # Lógica para mostrar apenas se AP1 ou AP2 tiverem valor
+    if f_ap1 > 0 or f_ap2 > 0:
+        media_final = (0.4 * f_ap1) + (0.4 * f_ap2) + (0.2 * f_ac)
+        
+        st.divider()
         st.metric("Média Final:", f"{media_final:.1f}")
-        st.success("Parabéns! Você está aprovado! ✅")
-    else:
-        st.metric("Média Final:", f"{media_final:.1f}")
-        st.warning("Você precisará fazer a prova de AS! ✍️")
+        if media_final >= 7.0:
+            st.success("Aprovado! ✅")
+        else:
+            st.warning("Média abaixo de 7.0. Você precisará fazer a prova de AS!.✍️")
 
-st.markdown("---")
-st.caption("Desenvolvido por uma estudante para estudantes.")
+st.markdown('<div class="footer">Desenvolvido por uma estudante para estudantes.</div>', unsafe_allow_html=True)
