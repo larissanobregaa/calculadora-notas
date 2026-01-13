@@ -6,7 +6,7 @@ st.set_page_config(page_title="Calculadora de Notas", page_icon="🎓", layout="
 # 2. CSS Ajustado
 st.markdown("""
     <style>
-    /* Estilo das abas (Tabs) */
+    /* Estilo das abas */
     .stTabs [data-baseweb="tab"] {
         height: 60px;
         padding: 0px 30px;
@@ -17,10 +17,10 @@ st.markdown("""
     [data-testid="stCaptionContainer"] {
         color: #262730 !important;
         font-weight: 500;
-        opacity: 1; /* Remove qualquer transparência que deixe o texto claro */
+        opacity: 1; 
     }
 
-    /* Estilo do Rodapé: removido o 'fixed' para evitar que ele suba no mobile */
+    /* Estilo do Rodapé */
     .footer {
         text-align: center;
         color: #888;
@@ -43,13 +43,13 @@ with tab1:
     # Texto explicativo sobre a média 7.0
     st.caption("ℹ️ Cálculo baseado na média mínima **7.0** para aprovação direta (sem necessidade de AS).")
     
-    ap1_m = st.number_input("Digite sua nota da AP1", 0.0, 10.0, step=0.1, key="meta_ap1")
-    ac_m = st.number_input("Digite sua nota da AC", 0.0, 10.0, step=0.1, key="meta_ac")
+    ap1_n = st.number_input("Digite sua nota da AP1", 0.0, 10.0, step=0.1, key="nota_ap1")
+    ac_n = st.number_input("Digite sua nota da AC", 0.0, 10.0, step=0.1, key="notaa_ac")
     
     # Lógica para mostrar apenas se houver algum valor inserido
-    if ap1_m > 0 or ac_m > 0:
-        # Fórmula inversa para atingir a meta de 7.0
-        nota_necessaria = (7.0 - (0.4 * ap1_m) - (0.2 * ac_m)) / 0.4
+    if ap1_n > 0 or ac_n > 0:
+        # Fórmula inversa para atingir a nota 7.0
+        nota_necessaria = (7.0 - (0.4 * ap1_n) - (0.2 * ac_n)) / 0.4
         
         st.divider()
         if nota_necessaria <= 0:
