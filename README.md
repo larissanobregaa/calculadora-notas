@@ -2,11 +2,13 @@
 
 Um Web App desenvolvido em Python com o framework Streamlit, projetado para auxiliar estudantes do Ibmec na gestão de suas metas e notas acadêmicas. A interface foi otimizada para dispositivos móveis, garantindo agilidade no uso cotidiano.
 
----
+
 
 | Interface do App | Acesse pelo Celular |
 | :---: | :---: |
 | <img src="preview.jpeg" alt="Interface do App" width="280"> | <img src="qrcode.png" alt="Acesse pelo Celular" width="280"> |
+
+
 
 ### ✨ Funcionalidades
 
