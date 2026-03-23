@@ -129,7 +129,7 @@ with tab2:
 
         btn_calculo2 = st.form_submit_button("Calcular Média Final")
         btn_limpar2 = st.form_submit_button("Limpar Tudo")
-        
+
         if btn_limpar2:
             st.session_state.reset_counter += 1
             st.rerun()
@@ -170,7 +170,8 @@ with tab2:
                                 st.success("Sua nota atual já é suficiente se você fizer a AS!")
                             else:
                                 st.info(f"Para atingir a média 7.0, você precisa tirar **{nota_as_necessaria:.2f}** na prova de AS.")
-                                st.caption(f"*(O cálculo considera que a AS substituirá sua nota mais baixa, que hoje é {min(final_ap1, final_ap2):.2f})*")
+                                st.caption(f"*(O cálculo considera que a AS substituirá sua nota mais baixa, que hoje é {min(final_ap1, final_ap2):.2f})*.\n\n"
+                                        f"**Observação:** A AS só substitui as notas da AP1 ou AP2, a nota de AC não é substituída!")
                 else:
                     st.info("Insira suas notas de AP1, AP2 e AC para ver sua média final.")
             except ValueError:
@@ -183,12 +184,10 @@ st.markdown(" ###### 📢 Gostou da calculadora? Compartilhe com seus colegas!")
 col_share1, col_share2 = st.columns(2)
 
 with col_share1:
-    # Substitua 'SEU_LINK_AQUI' pelo link que o Streamlit vai te dar (ex: https://minha-calculadora.streamlit.app)
     link_projeto = "https://calculadora-notas.streamlit.app/" 
     st.info(f"🔗 **Link do App:** \n{link_projeto}")
 
 with col_share2:
-    # Mensagem pronta para WhatsApp
     texto_wa = f"Oii! Descobri essa calculadora de notas que ajuda a calcular as notas. Olha só: {link_projeto}"
     link_wa = f"https://wa.me/?text={texto_wa.replace(' ', '%20')}"
     st.markdown(f' <a href="{link_wa}" target="_blank"><button style="width:100%; border-radius:8px; height:3.5em; background-color:#25D366; color:white; border:none; font-weight:bold; cursor:pointer;"> Enviar no WhatsApp</button></a>', unsafe_allow_html=True)
