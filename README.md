@@ -14,8 +14,11 @@ Um Web App desenvolvido em Python com o framework Streamlit, projetado para auxi
 
 O projeto oferece duas ferramentas principais organizadas em abas:
 1. **Simulador de Nota:** Calcula automaticamente a nota necessária na AP2 para atingir a média mínima de 7.0 e garantir a aprovação direta, sem necessidade de Prova Substitutiva (AS).
+  -  Alerta caso o aluno precise obrigatoriamente da Prova Substitutiva (AS), mesmo tirando 10 na AP2.
+2. **Cálculo de Média Final e Projeção de AS:** Processa as notas de AP1, AP2 e AC para fornecer a média final exata e o status de aprovação do aluno.
+  - **Diferencial:** Caso o aluno não atinja a média 7.0, o sistema identifica automaticamente a menor nota entre AP1 e AP2 e calcula quanto ele precisa tirar na AS para ser aprovado.
 
-2. **Cálculo de Média Final:** Processa as notas de AP1, AP2 e AC para fornecer a média final exata e o status de aprovação do aluno.
+**Compartilhamento Facilitado:** Botão de integração direta com WhatsApp para o compartilhamento da ferramenta entre grupos de estudo.
 
 ---
 
@@ -37,6 +40,6 @@ A aplicação está disponível online através do Streamlit Cloud:
 
 
 #### Como rodar localmente:
-1. Instale o Streamlit: `pip install streamlit`
-
-2. Execute o comando: `python -m streamlit run app.py`
+1. Clone o repositório: `git clone https://github.com/larissanobregaa/calculadora-notas.git`
+2. Instale as dependências: `pip install -r requirements.txt`
+3. Execute a aplicação: `streamlit run app.py`

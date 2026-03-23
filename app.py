@@ -33,20 +33,24 @@ st.markdown("""
     }
 
     div[data-testid="stFormSubmitButton"] {
-        display: inline-block;
-        width: 100%;
+        display: block !important;
+        width: 100% !important;
     }
             
-    .stFormSubmitButton > button {
+    div[data-testid="stFormSubmitButton"] > button {
         width: 100% !important;
-        border-radius: 8px;
-        height: 3.5em;
-        font-weight: bold;
-    }
-
-    [data-testid = "column"] {
-        min-width: 120px !important;
+        border-radius: 8px !important;
+        height: 3.5em !important;
+        font-weight: bold !important;
+        margin-bottom: 10px !important;
+        display: block !important;
     }       
+            
+    [data-testid="column"] {
+        width: 100% !important;
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -73,12 +77,9 @@ with tab1:
         
         st.write("")
 
-        col_btn1, col_btn2 = st.columns(2)
-        with col_btn1:
-            btn_calculo1 = st.form_submit_button("Calcular Nota")
-        with col_btn2:
-            btn_limpar1 = st.form_submit_button("Limpar Tudo")
-        
+        btn_calculo1 = st.form_submit_button("Calcular Nota Necessária")
+        btn_limpar1 = st.form_submit_button("Limpar Tudo")
+
         if btn_limpar1:
             st.session_state.reset_counter += 1
             st.rerun()
@@ -126,11 +127,8 @@ with tab2:
 
         st.write("")    
 
-        col_btn3, col_btn4 = st.columns(2)
-        with col_btn3:
-            btn_calculo2 = st.form_submit_button("Calcular Média Final")
-        with col_btn4:
-            btn_limpar2 = st.form_submit_button("Limpar Tudo")
+        btn_calculo2 = st.form_submit_button("Calcular Média Final")
+        btn_limpar2 = st.form_submit_button("Limpar Tudo")
         
         if btn_limpar2:
             st.session_state.reset_counter += 1
